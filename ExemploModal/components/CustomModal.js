@@ -6,41 +6,41 @@ const CustomModalScreen = ({ animation, themeColor}) =>{
     const[ visible, setVisible] = useState(false);
 
     return(
-        <SafeAreaView style={[styles.screenContainer,{backgroundColor: themeColor + 10}]}>
-            <text style={[styles.headerText, {color: themeColor}]}>
+        <SafeAreaView style={[styles.screenContainer, { backgroundColor: themeColor }]}>
+            <Text style={[styles.headerText, { color: themeColor }]}>
                 Modo: {animation.toUpperCase()}
-            </text>
+            </Text>
 
             <TouchableOpacity style={[styles.mainButton, {backgroundColor:themeColor}]}
                 onPress={()=> setVisible(true)}>
-                <text style={styles.buttonText}>
+                <Text style={styles.buttonText}>
                     Abrir Modal {animation.toUpperCase()}
-                </text>
+                </Text>
             </TouchableOpacity>
 
             <Modal
-            animationType={animation}
-            transparent={true}
-            visible={visible}
-            onRequestClose={() => setVisible(false)}>
+                animationType={animation}
+                transparent={true}
+                visible={visible}
+                onRequestClose={() => setVisible(false)}>
 
                 <TouchableOpacity
-                style={styles.modalOverlay}
-                activeOpacity={1}
-                onPress={() => setVisible(false)}>
+                    style={styles.modalOverlay}
+                    activeOpacity={1}
+                    onPress={() => setVisible(false)}>
 
-                    <View style={[styles.colorIndicator, {backgroundColor: themeColor}]}/>
+                    <View style={styles.modalCard}>
+                        <View style={[styles.colorIndicator, { backgroundColor: themeColor }]} />
 
+                        <Text style={styles.modalTitle}>Animação {animation}</Text>
+                        <Text style={styles.modalBody}>
+                            Essa transição demonstra o comportamento nativo do tipo {animation}
+                        </Text>
 
-                        <Text style={styles.modalTitle}> Animação {animation}</Text>
-                        <Text STYLE={styles.modalBody}>Essa transição demonstra o comportamento nativo do tipo {animation}</Text>
-                        
                         <TouchableOpacity
-                        style={styles.closeButton}
-                        onPress={()=> setVisible (false)}>
-                            <Text style={styles.closeButtonText}>
-                                Fechar
-                            </Text>
+                            style={styles.closeButton}
+                            onPress={() => setVisible(false)}>
+                            <Text style={styles.closeButtonText}>Fechar</Text>
                         </TouchableOpacity>
                     </View>
                 </TouchableOpacity>
